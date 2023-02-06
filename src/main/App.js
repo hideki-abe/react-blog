@@ -1,13 +1,11 @@
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '~bootswatch/dist/vapor/variables';
-import '~bootstrap/scss/bootstrap';
-import '~bootswatch/dist/vapor/bootswatch';
+import 'bootswatch/dist/minty/bootstrap.min.css';
+import Navbar from '../components/navbar';
 
 function App() {
   return (
     <div className="App">
-      <button type="button" class="btn btn-primary">Primary</button>
+      <Navbar></Navbar>
     </div>
   );
 }
