@@ -5,7 +5,7 @@ import {
     Route
   } from "react-router-dom";
 import Home from "../views/home";
-import RegisterIngredient from "../views/register-ingredient";
+import RegisterIngredient from "../views/ingredients";
 import Recipe from "../views/recipes";
 
 export default function Rotas(props) {

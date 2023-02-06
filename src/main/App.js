@@ -7,8 +7,9 @@ function App() {
   return (
     <>
         <Navbar/>
-        <Rotas>
-        </Rotas>
+        <div className='container'>
+          <Rotas/>
+        </div>
     </>
   );
 }
