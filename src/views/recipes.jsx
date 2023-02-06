@@ -24,6 +24,8 @@ export default function Recipe(props) {
                 </div>
             </div>
         </div>
+        
+
         </>
     )    
 }

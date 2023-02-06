@@ -6,6 +6,6 @@ export default class IngredientService extends ApiService {
     }
 
     getAll(filter) {
-        
+        return this.get();
     }
 }

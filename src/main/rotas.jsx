@@ -7,6 +7,7 @@ import {
 import Home from "../views/home";
 import RegisterIngredient from "../views/ingredients";
 import Recipe from "../views/recipes";
+import ListRecipes from "../views/list-recipes";
 
 export default function Rotas(props) {
     return (
@@ -14,7 +15,7 @@ export default function Rotas(props) {
             <Routes>
                 <Route path="/" element={<Home />}/>
                 <Route path="/register-ingredient" element={<RegisterIngredient />}/>
-                <Route path="/recipes" element={<Recipe />}/>
+                <Route path="/recipes" element={<ListRecipes />}/>
             </Routes>
         </Router>
     );
