@@ -1,8 +1,9 @@
 import React from "react";
 import RecipeService from "../app/service/recipeService";
 import ListaDeReceitas from "../components/listaDeReceitas";
+import { withRouter } from "react-router-dom";
 
-export default class ListRecipes extends React.Component {
+class RecipePage extends React.Component {
 
     constructor() {
         super();
@@ -14,6 +15,11 @@ export default class ListRecipes extends React.Component {
         description: '',
         date: '',
         receitas: []
+    }
+
+    toRecipe = (id) => {
+        console.log("chamando função para ir para a receita detalhada!");
+        this.props.history.push(`/receita/${id}`);
     }
 
     atualizaReceitas = () => {
@@ -31,16 +37,16 @@ export default class ListRecipes extends React.Component {
         })
     }
 
-    
-
     render() {
         this.atualizaReceitas();
         return(
             <>
             <div style={{marginTop: '50px'}} className="">
-                <ListaDeReceitas receitas={this.state.receitas}/>
+                <ListaDeReceitas receitas={this.state.receitas} toRecipe={this.toRecipe}/>
             </div>
             </>
         )
     }
 }
+
+export default withRouter(RecipePage);

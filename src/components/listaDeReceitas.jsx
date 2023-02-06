@@ -1,13 +1,14 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 
-export default function ListaDeReceitas(props) {
+function ListaDeReceitas(props) {
 
     const rows = props.receitas.map( receita => {
         return (
-            <div className="card border-primary " style={{marginBottom: '2em'}}>
+            <div key={receita.id} className="card border-primary " style={{marginBottom: '2em'}}>
                 <div className="card-header">{receita.date}</div>
                 <div className="card-body">
-                    <h4 className="card-title">{receita.name}</h4>
+                    <button onClick={e => props.toRecipe(receita.id)}>{receita.name}</button>
                     <p className="card-text">{receita.description}</p>
                 </div>
             </div>
@@ -20,3 +21,5 @@ export default function ListaDeReceitas(props) {
         </>
     )
 }
+
+export default withRouter(ListaDeReceitas);
