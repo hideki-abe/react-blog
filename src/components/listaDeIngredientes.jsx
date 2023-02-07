@@ -4,7 +4,12 @@ export default function ListaDeIngredientes(props) {
 
     const rows = props.ingredientes.map( ingredient => {
         return (
-            <li>{ingredient.name}: {ingredient.calories}</li>
+            <>
+                <li className="list-group-item d-flex justify-content-between align-items-center">
+                {ingredient.name}
+                <span className="badge bg-primary rounded-pill">calorias: {ingredient.calories}</span>
+                </li>
+            </>
         )
     })
 
