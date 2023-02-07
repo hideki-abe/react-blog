@@ -4,18 +4,19 @@ export default function ListaDeReceitas(props) {
 
     const rows = props.receitas.map( receita => {
         return (
-            <div key={receita.id} className="card border-primary " style={{marginBottom: '2em'}}>
-                <div className="card-header">{receita.date}</div>
-                <div className="card-body">
-                    <button type="button" 
-                            className="btn btn-link" 
-                            onClick={e => props.toRecipe(receita.id)}
-                            style={{paddingLeft: '0px', marginLeft: '0px', border:'none', textDecoration: 'none'}}>
-                            {receita.name}
-                    </button>
-                    <p className="card-text">{receita.description}</p>
-                </div>
-            </div>
+            <>
+            <h2 key={receita.id}>
+                <button type="button" 
+                    className="btn btn-link" 
+                    onClick={e => props.toRecipe(receita.id)}
+                    style={{paddingLeft: '0px', marginLeft: '0px', border:'none', textDecoration: 'none', fontSize: '0.8em'}}>
+                    {receita.name}
+                </button>
+            </h2>
+                <p>{receita.date}</p>
+                <p>{receita.description}</p>
+            <hr></hr>
+            </>
         )
     })
 

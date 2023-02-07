@@ -2,6 +2,7 @@ import React from "react";
 import RecipeService from "../app/service/recipeService";
 import ListaDeReceitas from "../components/listaDeReceitas";
 import { withRouter } from "react-router-dom";
+import Pagination from "../components/pagination";
 
 class RecipePage extends React.Component {
 
@@ -43,6 +44,7 @@ class RecipePage extends React.Component {
             <>
             <div style={{marginTop: '50px'}}>
                 <ListaDeReceitas receitas={this.state.receitas} toRecipe={this.toRecipe}/>
+                <Pagination />
             </div>
             </>
         )
