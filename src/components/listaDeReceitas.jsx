@@ -1,7 +1,6 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
 
-function ListaDeReceitas(props) {
+export default function ListaDeReceitas(props) {
 
     const rows = props.receitas.map( receita => {
         return (
@@ -21,5 +20,3 @@ function ListaDeReceitas(props) {
         </>
     )
 }
-
-export default withRouter(ListaDeReceitas);
