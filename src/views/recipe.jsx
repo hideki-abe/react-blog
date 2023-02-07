@@ -1,34 +1,46 @@
 import React from "react";
+import IngredientService from "../app/service/ingredientService";
 import RecipeService from "../app/service/recipeService";
+import ListaDeIngredientes from "../components/listaDeIngredientes";
 
 export default class Recipe extends React.Component {
     
     state = {
-        id: null,
+        id: '',
         name: '',
         description: '',
-        date: ''
+        date: '',
+        ingredients: []
     }
 
     constructor() {
         super();
-        this.service = new RecipeService();
+        this.recipeService = new RecipeService();
+        this.ingredientService = new IngredientService();
     }
 
     componentDidMount() {
         const params = this.props.match.params;
         if(params.id) {
-            this.service.findById(params.id)
+            this.recipeService.findById(params.id)
                 .then(response => {
-                    this.setState({...response.data})
+                    this.setState({ ...response.data })
                 })
                 .catch(error => {
                     console.log(error.response.data);
                 })
         }
     }
-    
+
+    /*
+    getIngredients = (id) => {
+        this.ingredientService
+            .
+    }
+    */
+
     render() {
+
         return(
             <div className="container" style={{marginBottom: '100px'}}>
                 <div className="card mb-3 " style={{ marginTop: '50px'}}>
@@ -42,9 +54,7 @@ export default class Recipe extends React.Component {
                         <p className="card-text">Ingredientes</p>
                     </div>
                     <ul className="list-group list-group-flush">
-                        <li className="list-group-item">Farinha de trigo</li>
-                        <li className="list-group-item">Ovo</li>
-                        <li className="list-group-item">Sal</li>
+                        <ListaDeIngredientes ingredientes={this.state.ingredients}/>
                     </ul>
                     <div className="card-body">
                         <p className="card-text">{this.state.description}</p>
