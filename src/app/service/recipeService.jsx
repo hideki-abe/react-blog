@@ -8,4 +8,8 @@ export default class RecipeService extends ApiService {
     getAll(filter) {
         return this.get('');
     }
+
+    findById(id) {
+        return this.get(`/${id}`);
+    }
 }

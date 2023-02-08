@@ -14,8 +14,8 @@ export default function Rotas(props) {
         <Router>
             <Switch>
                 <Route path="/register-ingredient" component={RegisterIngredient}/>
-                <Route path="/recipe/:id?" component={Recipe} />
                 <Route path="/recipes" component={RecipePage} />
+                <Route path="/receita/:id" component={Recipe} />
                 <Route path="/" component={Home}/>
             </Switch>
         </Router>

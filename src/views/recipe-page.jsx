@@ -2,14 +2,10 @@ import React from "react";
 import RecipeService from "../app/service/recipeService";
 import ListaDeReceitas from "../components/listaDeReceitas";
 import { withRouter } from "react-router-dom";
+import Pagination from "../components/pagination";
 
 class RecipePage extends React.Component {
 
-    constructor() {
-        super();
-        this.service = new RecipeService();
-    }
-    
     state = {
         name: '',
         description: '',
@@ -17,18 +13,24 @@ class RecipePage extends React.Component {
         receitas: []
     }
 
+    constructor() {
+        super();
+        this.service = new RecipeService();
+    }
+
     toRecipe = (id) => {
         console.log("chamando função para ir para a receita detalhada!");
         this.props.history.push(`/receita/${id}`);
     }
 
-    atualizaReceitas = () => {
+    componentDidMount() {
         this.service
         .getAll()
         .then( resposta => {
             const lista = resposta.data;
             if(lista.length < 1) {
                 console.log("Nenhum resultado encontrado!");
+                
             }
             this.setState({ receitas: lista })
         })
@@ -38,11 +40,11 @@ class RecipePage extends React.Component {
     }
 
     render() {
-        this.atualizaReceitas();
         return(
             <>
-            <div style={{marginTop: '50px'}} className="">
+            <div style={{marginTop: '50px'}}>
                 <ListaDeReceitas receitas={this.state.receitas} toRecipe={this.toRecipe}/>
+                <Pagination />
             </div>
             </>
         )
