@@ -14,4 +14,10 @@ export default class ApiService {
         const requestUrl = `${this.apiurl}${url}`;
         return httpClient.get(requestUrl);
     }
+
+    post(url, objeto) {
+        const requestUrl = `${this.apiurl}${url}`;
+        console.log(objeto);
+        return httpClient.post(requestUrl, objeto);
+    }
 }
