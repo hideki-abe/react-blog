@@ -6,7 +6,7 @@ class IngredientService extends ApiService {
     }
 
     getAll(filter) {
-        return this.get();
+        return this.get('');
     }
 
     save(ingredient) {

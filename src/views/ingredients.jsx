@@ -3,12 +3,14 @@ import { withRouter } from "react-router-dom";
 import IngredientService from "../app/service/ingredientService";
 import Card from "../components/card";
 import FormGroup from "../components/form-group";
+import ListaDeIngredientes from "../components/listaDeIngredientes";
 
 class RegisterIngredient extends React.Component {
     
     state = {
         name: '',
-        calories: ''
+        calories: '',
+        ingredients: []
     }
 
     constructor() {
@@ -26,6 +28,7 @@ class RegisterIngredient extends React.Component {
         this.service.save(ingredient)
             .then( response => {
                 console.log("Ingrediente salvo com sucesso!");
+                this.getAllIngredients();
             }).catch(error => {
                 error.response.data.errors.map( e => {
                     console.log(e);
@@ -33,8 +36,41 @@ class RegisterIngredient extends React.Component {
             })
     }
 
+    componentDidMount() {
+        this.service
+        .getAll()
+        .then( resposta => {
+            const lista = resposta.data;
+            if(lista.length < 1) {
+                console.log("Nenhum resultado encontrado!");
+                
+            }
+            this.setState({ ingredients: lista })
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
+
+    getAllIngredients() {
+        this.service
+        .getAll()
+        .then( resposta => {
+            const lista = resposta.data;
+            if(lista.length < 1) {
+                console.log("Nenhum resultado encontrado!");
+                
+            }
+            this.setState({ ingredients: lista })
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
+
     render() {
         return(
+            <>
             <Card title="Cadastro de Novo Ingrediente">
                 <div className="row">
                     <div className="col-lg-12">
@@ -72,6 +108,14 @@ class RegisterIngredient extends React.Component {
                     </div>
                 </div>
             </Card>
+            <Card title="Lista de Ingredientes">
+                <div className="row">
+                    <div className="col-lg-12">
+                        <ListaDeIngredientes ingredientes={this.state.ingredients}></ListaDeIngredientes>
+                    </div>
+                </div>
+            </Card>
+            </>
         )
     }
 }
