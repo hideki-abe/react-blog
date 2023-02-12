@@ -37,19 +37,7 @@ class RegisterIngredient extends React.Component {
     }
 
     componentDidMount() {
-        this.service
-        .getAll()
-        .then( resposta => {
-            const lista = resposta.data;
-            if(lista.length < 1) {
-                console.log("Nenhum resultado encontrado!");
-                
-            }
-            this.setState({ ingredients: lista })
-        })
-        .catch(error => {
-            console.log(error);
-        })
+        this.getAllIngredients();
     }
 
     getAllIngredients() {
