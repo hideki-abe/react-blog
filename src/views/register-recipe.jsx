@@ -1,18 +1,43 @@
 import React from "react";
 import Card from "../components/card";
 import FormGroup from "../components/form-group";
-import ListaDeIngredientes from "../components/listaDeIngredientes";
+import Select from "../components/select";
 
 export default class RegisterRecipe extends React.Component {
 
 
     state = {
-        ingredients: ['Arroz', 'Feijao', 'Sal']
+        imagem: null
+    }
 
+    changeImage = (img) => {
+        const file = event.target[0]?.files[0];
+        console.log(file);
+        this.setState({ imagem: file});
     }
 
     
     render() {
+
+        const item1 = {
+            nome: 'Arroz',
+            calorias: '100'
+        }
+
+        const item2 = {
+            nome: 'Feijao',
+            calorias: '100'
+        }
+
+        const item3 = {
+            nome: 'Batata',
+            calorias: '100'
+        }
+
+        const ingredients = [item1, item2, item3];
+
+        console.log(this.imagem);
+
         return(
             <>
             <Card title="Cadastro de Nova Receita">
@@ -24,6 +49,15 @@ export default class RegisterRecipe extends React.Component {
                                         className="form-control"
                                         id="inputNome"
                                         name="nome"
+                                        >
+                                </input>
+                            </FormGroup>
+                            <FormGroup label="Imagem: *" htmlFor="inputImagem">
+                                <input type="file"
+                                        className="form-control"
+                                        id="inputImagem"
+                                        name="imagem"
+                                        onChange={this.changeImage()}
                                         >
                                 </input>
                             </FormGroup>
@@ -51,7 +85,12 @@ export default class RegisterRecipe extends React.Component {
                                         >
                                 </input>
                             </FormGroup>
-
+                            <FormGroup id="inputIngredient" label="Ingredient: *" >
+                                <Select     id="inputIngredient"  
+                                            ingredients={ingredients}
+                                            name="ingredient"
+                                            className="form-control"/>
+                            </FormGroup>
                             <div style={{marginTop: '1em', marginBottom: '1em'}}>
                                 <h3>
                                     Lista de Ingredientes

@@ -32,6 +32,7 @@ class RegisterIngredient extends React.Component {
             }).catch(error => {
                 error.response.data.errors.map( e => {
                     console.log(e);
+                    return e;
                 })
             })
     }
